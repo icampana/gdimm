@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<formulasValidacionCalculo version="03200601">
+	<campo numero="31">
+		<formula validacion="//campo[@numero='31'] = 'O' or //campo[@numero='31']='S' " fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR" mensajeError="Ingrese 'S' para sustitutiva, 'O' para original  "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="101">
+		<formula validacion="//campo[@numero='101'] &gt;= 1 and //campo[@numero='101'] &lt;= 12"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="101: Valor en Mes, no valido" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="104">
+		<formula validacion="string-length(//campo[@numero='104']) &lt;=15" fechaVigenciaDesde="19990101"
+			fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR" mensajeError="Verifique el No. de formulario de Declaracion Original"
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="(//campo[@numero='31']='S' and string-length(//campo[@numero='104'])&gt;0) or (//campo[@numero='31']='O' and string-length(//campo[@numero='104'])=0)"
+			fechaVigenciaDesde="19990101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="Casillero 104 es válido únicamente para declaraciones sutitutivas" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="105">
+		<formula validacion="((sum(//campo[@numero='301'])&gt;0 or  sum(//campo[@numero='302'])&gt;0) and  string-length(//campo[@numero='105'])&gt;0) or (sum(//campo[@numero='301'])=0 and  sum(//campo[@numero='302'])=0 and  string-length(//campo[@numero='105'])=0) or (string-length(//campo[@numero='105'])&gt;0)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ADVERTENCIA"
+			mensajeError="De ser el caso ingresar numero de empleados" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="106">
+		<formula validacion="((sum(//campo[@numero='301'])&gt;0 or  sum(//campo[@numero='302'])&gt;0) and  string-length(//campo[@numero='106'])&gt;0) or (sum(//campo[@numero='301'])=0 and  sum(//campo[@numero='302'])=0 and  string-length(//campo[@numero='106'])=0) or (string-length(//campo[@numero='106'])&gt;0)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ADVERTENCIA"
+			mensajeError="De ser el caso ingresar numero de empleados" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="107">
+		<formula validacion="((sum(//campo[@numero='301'])&gt;0 or  sum(//campo[@numero='302'])&gt;0) and  string-length(//campo[@numero='107'])&gt;0) or (sum(//campo[@numero='301'])=0 and  sum(//campo[@numero='302'])=0 and  string-length(//campo[@numero='107'])=0) or (string-length(//campo[@numero='107'])&gt;0)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ADVERTENCIA"
+			mensajeError="De ser el caso ingresar numero de empleados" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="108">
+		<formula validacion="(sum(//campo[@numero='399'])&gt;0  and  string-length(//campo[@numero='108'])&gt;0) or (sum(//campo[@numero='399'])=0  and  string-length(//campo[@numero='108'])=0) or (string-length(//campo[@numero='108'])&gt;0)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="Debe registrar el número de comprobantes de retención" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="201">
+		<formula validacion="//campo[@numero='201'] = //ruc" fechaVigenciaDesde="20000101" fechaVigenciaHasta=""
+			tipoFormula="V" severidad="ERROR" mensajeError="Campo 201 debe ser igual al RUC" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="352">
+		<formula validacion="(//campo[@numero='302'] &gt; 0 and //campo[@numero='352'] &gt; 0) or (//campo[@numero='302'] = 0 and //campo[@numero='352'] = 0) or (string-length(//campo[@numero='352']) = 0)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="352: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="(//campo[@numero='352'] &gt;= 0 and //campo[@numero='352'] &lt;= sum(//campo[@numero='302'])) or (string-length(//campo[@numero='352']) = 0)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="352: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="353">
+		<formula validacion="sum(//campo[@numero='353']) &gt;= 0" fechaVigenciaDesde="20020101" fechaVigenciaHasta=""
+			tipoFormula="V" severidad="ERROR" mensajeError="Campo 353 debe ser mayor o igual a cero"
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round ( sum(//campo[@numero='353']) * 100) = round (sum(//campo[@numero='303']) * 5)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20030228" tipoFormula="V" severidad="ERROR"
+			mensajeError="353: Impuesto Originados en el trabajo Honorarios y Dietas" condicionFormulaCalculo="1=1" />
+		<formula validacion="round ( sum(//campo[@numero='353']) * 100) = round (sum(//campo[@numero='303']) * 8)"
+			fechaVigenciaDesde="20030301" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="353: Impuesto Originados en el trabajo Honorarios y Dietas" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='303']) * 5)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20030228" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='303']) * 8)" fechaVigenciaDesde="20030301"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="354">
+		<formula validacion="round (//campo[@numero='354'] * 100) = round (sum(//campo[@numero='304']) * 1)  or string-length(//campo[@numero='354']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20030228" tipoFormula="V" severidad="ERROR"
+			mensajeError="Operación incorrecta - verique sumatoria de los campos 352 al 381" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='354'] * 100) = round (sum(//campo[@numero='304']) * 8)  or string-length(//campo[@numero='354']) = 0"
+			fechaVigenciaDesde="20030301" fechaVigenciaHasta="20030331" tipoFormula="V" severidad="ERROR"
+			mensajeError="Operación incorrecta - verique sumatoria de los campos 352 al 381" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='354'] * 100) = round (sum(//campo[@numero='304']) * 1)  or string-length(//campo[@numero='354']) = 0"
+			fechaVigenciaDesde="20030401" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="Operación incorrecta - verique sumatoria de los campos 352 al 381" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='304']) * 1)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20030228" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='304']) * 1)" fechaVigenciaDesde="20030401"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='304']) * 8)" fechaVigenciaDesde="20030301"
+			fechaVigenciaHasta="20030331" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="355">
+		<formula validacion="//campo[@numero='355'] &gt;= 0" fechaVigenciaDesde="20000101" fechaVigenciaHasta=""
+			tipoFormula="V" severidad="ERROR" mensajeError="Campo 355 debe ser mayor o igual a cero"
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='355'] * 100) = round (sum(//campo[@numero='305']) * 33 )"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20010531" tipoFormula="V" severidad="ERROR"
+			mensajeError="355: Impuesto Originados en el trabajo Pago Local a Extranjeros" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='355'] * 100) = round (sum(//campo[@numero='305']) * 25 )"
+			fechaVigenciaDesde="20010601" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="355: Impuesto Originados en el trabajo Pago Local a Extranjeros" condicionFormulaCalculo="1=1" />
+		<formula validacion="round(sum(//campo[@numero='305'])*33)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20010531" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='305']) * 25 )" fechaVigenciaDesde="20010601"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="356">
+		<formula validacion="round (//campo[@numero='356'] * 100) = round (sum(//campo[@numero='306']) * 1)  or string-length(//campo[@numero='356']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="356: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='306']) * 1)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="357">
+		<formula validacion="round (//campo[@numero='357'] * 100) = round (sum(//campo[@numero='307']) * 1)  or string-length(//campo[@numero='357']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="357: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='307']) * 1)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="359">
+		<formula validacion="round (//campo[@numero='359'] * 100) = round (sum(//campo[@numero='309']) * 1)  or string-length(//campo[@numero='359']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="359: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='309']) * 1)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="360">
+		<formula validacion="round (//campo[@numero='360'] * 100) = round (sum(//campo[@numero='310']) * 1)  or string-length(//campo[@numero='360']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="360: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='310']) * 1)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="361">
+		<formula validacion="round (//campo[@numero='361'] * 100) = round (sum(//campo[@numero='311']) * 1)  or string-length(//campo[@numero='361']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="361: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='311']) * 1)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="362">
+		<formula validacion="round (//campo[@numero='362'] * 100) = round (sum(//campo[@numero='312']) * 1)  or string-length(//campo[@numero='362']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="362: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='312']) * 1) " fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="363">
+		<formula validacion="round (//campo[@numero='363'] * 100) = round (sum(//campo[@numero='313']) * 1)  or string-length(//campo[@numero='363']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="363: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='313']) * 1)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="364">
+		<formula validacion="( round(//campo[@numero='364'] * 100) &gt;= round (sum(//campo[@numero='314'])) ) and (round(//campo[@numero='364'] * 100) &lt;= round( sum(//campo[@numero='314']) * 5) ) or string-length (//campo[@numero='364'])=0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20030228" tipoFormula="V" severidad="ERROR"
+			mensajeError="364: Por regalias, derechos de autor, marcas y patentes y similares" condicionFormulaCalculo="1=1" />
+		<formula validacion="( round(//campo[@numero='364'] * 100) &gt;= round (sum(//campo[@numero='314']) * 5) ) and (round(//campo[@numero='364'] * 100) &lt;= round( sum(//campo[@numero='314']) * 8) ) or string-length (//campo[@numero='364'])=0"
+			fechaVigenciaDesde="20030301" fechaVigenciaHasta="20030331" tipoFormula="V" severidad="ERROR"
+			mensajeError="364: Por regalias, derechos de autor, marcas y patentes y similares" condicionFormulaCalculo="1=1" />
+		<formula validacion="( round(//campo[@numero='364'] * 100) &gt;= round (sum(//campo[@numero='314']) * 1) ) and (round(//campo[@numero='364'] * 100) &lt;= round( sum(//campo[@numero='314']) * 8) ) or string-length (//campo[@numero='364'])=0"
+			fechaVigenciaDesde="20030401" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="364: Por regalias, derechos de autor, marcas y patentes y similares" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="365">
+		<formula validacion="round (//campo[@numero='365'] * 100) = round (sum(//campo[@numero='315']) * 5)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="Operación incorrecta - verique sumatoria de los campos 352 al 381" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='315']) * 5)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="366">
+		<formula validacion="round (//campo[@numero='366'] * 100) = round (sum(//campo[@numero='316']) * 5)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20030228" tipoFormula="V" severidad="ERROR"
+			mensajeError="366: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="//campo[@numero='366'] &gt;= 0" fechaVigenciaDesde="20000101" fechaVigenciaHasta=""
+			tipoFormula="V" severidad="ERROR" mensajeError="Campo 366 debe ser mayor a cero" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='366'] * 100) = round (sum(//campo[@numero='316']) * 8)"
+			fechaVigenciaDesde="20030301" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="366: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='316']) * 8)" fechaVigenciaDesde="20030301"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='316']) * 5)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20030228" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="367">
+		<formula validacion="round (//campo[@numero='367'] * 100) = round (sum(//campo[@numero='317']) * 1)  or string-length(//campo[@numero='367']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="Operación incorrecta - verique sumatoria de los campos 352 al 381" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='317']) * 1)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="368">
+		<formula validacion="round (//campo[@numero='368'] * 100) = round (sum(//campo[@numero='318']) * 1)  or string-length(//campo[@numero='368']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20030228" tipoFormula="V" severidad="ERROR"
+			mensajeError="368 Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='368'] * 100) = round (sum(//campo[@numero='318']) * 1)  or string-length(//campo[@numero='368']) = 0"
+			fechaVigenciaDesde="20030401" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="376: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="( round(//campo[@numero='368'] * 100) &gt;= round (sum(//campo[@numero='318']) * 1) ) and (round(//campo[@numero='368'] * 100) &lt;= round( sum(//campo[@numero='318']) * 8) ) or string-length (//campo[@numero='368'])=0"
+			fechaVigenciaDesde="20030301" fechaVigenciaHasta="20030331" tipoFormula="V" severidad="ERROR"
+			mensajeError="376: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="369">
+		<formula validacion="round (//campo[@numero='369'] * 100) = round (sum(//campo[@numero='319']))"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="369: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='319']))" fechaVigenciaDesde="20000101" fechaVigenciaHasta=""
+			tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="370">
+		<formula validacion="round (//campo[@numero='370'] * 100) = round (sum(//campo[@numero='320']) * 5)  or string-length(//campo[@numero='370']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20030228" tipoFormula="V" severidad="ERROR"
+			mensajeError="370: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='370'] * 100) = round (sum(//campo[@numero='320']) * 8)  or string-length(//campo[@numero='370']) = 0"
+			fechaVigenciaDesde="20030301" fechaVigenciaHasta="" tipoFormula="V" severidad="ADVERTENCIA"
+			mensajeError="370: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='320']) * 8)" fechaVigenciaDesde="20030301"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='320']) * 5)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20030228" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="371">
+		<formula validacion="round (//campo[@numero='371'] * 100) = round (sum(//campo[@numero='321']) * 1)  or string-length(//campo[@numero='371']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20030228" tipoFormula="V" severidad="ERROR"
+			mensajeError="371: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='371'] * 100) = round (sum(//campo[@numero='321']) * 5) or string-length(//campo[@numero='371']) = 0"
+			fechaVigenciaDesde="20030301" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="371: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='321']) * 5)" fechaVigenciaDesde="20030301"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='321']) * 1)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20030228" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="372">
+		<formula validacion="round (//campo[@numero='372'] * 100) = round (sum(//campo[@numero='322']) * 1) or string-length(//campo[@numero='372']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="372: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='322']) * 1)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="373">
+		<formula validacion="(round (//campo[@numero='373'] * 100) &gt;= round (sum(//campo[@numero='323']) * 5)) and (round (//campo[@numero='373'] * 100) &lt;= round (sum(//campo[@numero='323']) * 33))"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20010531" tipoFormula="V" severidad="ERROR"
+			mensajeError="373: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="(round (//campo[@numero='373'] * 100) &gt;= round (sum(//campo[@numero='323']) * 5)) and (round (//campo[@numero='373'] * 100) &lt;= round (sum(//campo[@numero='323']) * 25))"
+			fechaVigenciaDesde="20010601" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="373: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="374">
+		<formula validacion="round (//campo[@numero='374'] * 100) = round (sum(//campo[@numero='324']) * 1) or string-length(//campo[@numero='374']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="374: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='324']) * 1)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="375">
+		<formula validacion="round (//campo[@numero='375'] * 100) = round (sum(//campo[@numero='325']) * 15)  or string-length(//campo[@numero='375']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="375: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='325']) * 15)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="376">
+		<formula validacion="round (//campo[@numero='376'] * 100) = round (sum(//campo[@numero='326']) * 1) or string-length(//campo[@numero='376']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="376: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion=" round (sum(//campo[@numero='326']) * 1)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="377">
+		<formula validacion="round (//campo[@numero='377'] * 100) = round (sum(//campo[@numero='327']) * 0.2) or string-length(//campo[@numero='377']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="377: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='327']) * 0.2)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="378">
+		<formula validacion="round (//campo[@numero='378'] * 100) = round (sum(//campo[@numero='328']) * 0.3) or string-length(//campo[@numero='378']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="378: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='328']) * 0.3)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="379">
+		<formula validacion="round (//campo[@numero='379'] * 100) = round (sum(//campo[@numero='329']) * 1) or string-length(//campo[@numero='379']) = 0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20030228" tipoFormula="V" severidad="ERROR"
+			mensajeError="379: Verifique Valor de Impuesto Retenido o Base Imponible" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='379'] * 100) = round (sum(//campo[@numero='329']) * 1) or string-length(//campo[@numero='379']) = 0"
+			fechaVigenciaDesde="20030401" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="379: Verifique Valor de Impuesto Retenido o Base Imponible" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='379'] * 100) &gt;= round (sum(//campo[@numero='329']) * 1) and round (//campo[@numero='379'] * 100) &lt;= round (sum(//campo[@numero='329']) * 5)"
+			fechaVigenciaDesde="20030301" fechaVigenciaHasta="20030331" tipoFormula="V" severidad="ERROR"
+			mensajeError="379: Verifique Valor de Impuesto Retenido o Base Imponible" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="380">
+		<formula validacion="round (//campo[@numero='380'] * 100) = round (sum(//campo[@numero='330']) * 25)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="380: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='330']) * 25)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="381">
+		<formula validacion="round (//campo[@numero='381'] * 100) = round (sum(//campo[@numero='331']) * 1)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="381: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='331']) * 1)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="399">
+		<formula validacion="round (//campo[@numero='399'] * 100) = round ( (sum(//campo[@numero='352']) + sum(//campo[@numero='353']) + sum(//campo[@numero='354']) + sum(//campo[@numero='355']) + sum(//campo[@numero='356'])+ sum(//campo[@numero='357'])  + sum(//campo[@numero='359']) + sum(//campo[@numero='360']) + sum(//campo[@numero='361']) + sum(//campo[@numero='362']) + sum(//campo[@numero='363']) + &#xA;sum(//campo[@numero='364']) + sum(//campo[@numero='365']) + sum(//campo[@numero='366']) + sum(//campo[@numero='367']) + sum(//campo[@numero='368']) + sum(//campo[@numero='369']) + sum(//campo[@numero='370']) + sum(//campo[@numero='371']) + sum(//campo[@numero='372']) + sum(//campo[@numero='373']) + sum(//campo[@numero='374']) + sum(//campo[@numero='375']) + &#xA;sum(//campo[@numero='376']) + sum(//campo[@numero='377']) + sum(//campo[@numero='378']) + sum(//campo[@numero='379']) + sum(//campo[@numero='380']) + sum(//campo[@numero='381'])) * 100 )"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="Operación incorrecta - verique sumatoria de los campos 352 al 381" condicionFormulaCalculo="1=1" />
+		<formula validacion="round ( (sum(//campo[@numero='352']) + sum(//campo[@numero='353']) + sum(//campo[@numero='354']) + &#xA;sum(//campo[@numero='355']) + sum(//campo[@numero='357']) + sum(//campo[@numero='356']) + sum(//campo[@numero='359']) + sum(//campo[@numero='360']) + sum(//campo[@numero='361']) + sum(//campo[@numero='362']) + sum(//campo[@numero='363']) + sum(//campo[@numero='364']) + sum(//campo[@numero='365']) + sum(//campo[@numero='366']) + sum(//campo[@numero='367']) + &#xA;sum(//campo[@numero='368']) + sum(//campo[@numero='369']) + sum(//campo[@numero='370']) + sum(//campo[@numero='371']) + sum(//campo[@numero='372']) + sum(//campo[@numero='373']) + sum(//campo[@numero='374']) + sum(//campo[@numero='375']) + sum(//campo[@numero='376']) + sum(//campo[@numero='377']) + sum(//campo[@numero='378']) + sum(//campo[@numero='379']) + &#xA;sum(//campo[@numero='380']) + sum(//campo[@numero='381'])) * 100 )"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA"
+			mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="451">
+		<formula validacion="(//campo[@numero='451'] &gt;= 0 and //campo[@numero='451'] &lt;= sum(//campo[@numero='401'])) or (string-length(//campo[@numero='451']) = 0)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="451: Debe ser menor que el campo 401" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="453">
+		<formula validacion="round (//campo[@numero='453'] * 100) = round (sum(//campo[@numero='403']) * 33)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20010531" tipoFormula="V" severidad="ERROR"
+			mensajeError="453: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='453'] * 100) = round (sum(//campo[@numero='403']) * 25)"
+			fechaVigenciaDesde="20010601" fechaVigenciaHasta="" tipoFormula="V" severidad="ADVERTENCIA"
+			mensajeError="453: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='403']) * 25)" fechaVigenciaDesde="20010601"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion=" round (sum(//campo[@numero='403']) * 33)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20010531" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="455">
+		<formula validacion="round (//campo[@numero='455'] * 100) = round (sum(//campo[@numero='405']) * 33)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20010531" tipoFormula="V" severidad="ERROR"
+			mensajeError="455: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='455'] * 100) = round (sum(//campo[@numero='405']) * 25)"
+			fechaVigenciaDesde="20010601" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="455: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='405']) * 25)" fechaVigenciaDesde="20010601"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion=" round (sum(//campo[@numero='405']) * 33)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20010531" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="457">
+		<formula validacion="round (//campo[@numero='457'] * 100) = round (sum(//campo[@numero='407']) * 33)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20010531" tipoFormula="V" severidad="ERROR"
+			mensajeError="457: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='457'] * 100) = round (sum(//campo[@numero='407']) * 25)"
+			fechaVigenciaDesde="20010601" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="457: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='407']) * 25)" fechaVigenciaDesde="20010601"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='407']) * 33)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20010531" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="459">
+		<formula validacion="round (//campo[@numero='459'] * 100) = round (sum(//campo[@numero='409']) * 33)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20010531" tipoFormula="V" severidad="ERROR"
+			mensajeError="459: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='459'] * 100) = round (sum(//campo[@numero='409']) * 25)"
+			fechaVigenciaDesde="20010601" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="459: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='409']) * 25)" fechaVigenciaDesde="20010601"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='409']) * 33)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20010531" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="461">
+		<formula validacion="round (//campo[@numero='461'] * 100) = round (sum(//campo[@numero='411']) * 33)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20010531" tipoFormula="V" severidad="ERROR"
+			mensajeError="461: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='461'] * 100) = round (sum(//campo[@numero='411']) * 25)"
+			fechaVigenciaDesde="20010601" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="461: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='411']) * 25)" fechaVigenciaDesde="20010601"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='411']) * 33)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20010531" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="463">
+		<formula validacion="round (//campo[@numero='463'] * 100) = round (sum(//campo[@numero='413']) * 33)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20010531" tipoFormula="V" severidad="ERROR"
+			mensajeError="463: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='463'] * 100) = round (sum(//campo[@numero='413']) * 25)"
+			fechaVigenciaDesde="20010601" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="463: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='413']) * 25)" fechaVigenciaDesde="20010601"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='413']) * 33)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20010531" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="465">
+		<formula validacion="round (//campo[@numero='465'] * 100) = round (sum(//campo[@numero='415']) * 33)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20010531" tipoFormula="V" severidad="ERROR"
+			mensajeError="465: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='465'] * 100) = round (sum(//campo[@numero='415']) * 25)"
+			fechaVigenciaDesde="20010601" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="465: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='415']) * 25)" fechaVigenciaDesde="20010601"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='415']) * 33)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20010531" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="467">
+		<formula validacion="round (//campo[@numero='467'] * 100) = round (sum(//campo[@numero='417']) * 33)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20010531" tipoFormula="V" severidad="ERROR"
+			mensajeError="467: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='467'] * 100) = round (sum(//campo[@numero='417']) * 25)"
+			fechaVigenciaDesde="20010601" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="467: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='417']) * 33)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20010531" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='417']) * 25)" fechaVigenciaDesde="20010601"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="469">
+		<formula validacion="round (//campo[@numero='469'] * 100) = round (sum(//campo[@numero='419']) * 33)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20010531" tipoFormula="V" severidad="ERROR"
+			mensajeError="469: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='469'] * 100) = round (sum(//campo[@numero='419']) * 25)"
+			fechaVigenciaDesde="20010601" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="469: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='419']) * 25)" fechaVigenciaDesde="20010601"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='419']) * 33)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20010531" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="471">
+		<formula validacion="round (//campo[@numero='471'] * 100) = round (sum(//campo[@numero='421']) * 33)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20010531" tipoFormula="V" severidad="ERROR"
+			mensajeError="471: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='471'] * 100) = round (sum(//campo[@numero='421']) * 25)"
+			fechaVigenciaDesde="20010601" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="471: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='421']) * 25)" fechaVigenciaDesde="20010601"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='421']) * 33)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20010531" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="473">
+		<formula validacion="round (//campo[@numero='473'] * 100) = round (sum(//campo[@numero='423']) * 33)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20010531" tipoFormula="V" severidad="ERROR"
+			mensajeError="473: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='473'] * 100) = round (sum(//campo[@numero='423']) * 25)"
+			fechaVigenciaDesde="20010601" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="473: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='423']) * 25)" fechaVigenciaDesde="20010601"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='423']) * 33)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20010531" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="475">
+		<formula validacion="round (//campo[@numero='475'] * 100) = round (sum(//campo[@numero='425']) * 33)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="20010531" tipoFormula="V" severidad="ERROR"
+			mensajeError="475: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='475'] * 100) = round (sum(//campo[@numero='425']) * 25)"
+			fechaVigenciaDesde="20010601" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="475: Verifique Valor de Impuesto Retenido o Valor Pagado" condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='425']) * 25)" fechaVigenciaDesde="20010601"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (sum(//campo[@numero='425']) * 33)" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="20010531" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="498">
+		<formula validacion="//campo[@numero='498'] &gt;= 0" fechaVigenciaDesde="20000101" fechaVigenciaHasta=""
+			tipoFormula="V" severidad="ERROR" mensajeError="Campo 498 debe ser mayor o igual a cero"
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='498'] * 100) = round ((sum(//campo[@numero='451']) + sum(//campo[@numero='453']) + sum(//campo[@numero='455']) + sum(//campo[@numero='457']) + sum(//campo[@numero='459']) + sum(//campo[@numero='461']) + sum(//campo[@numero='463']) + sum(//campo[@numero='465']) + sum(//campo[@numero='467']) + sum(//campo[@numero='469']) + sum(//campo[@numero='471']) + sum(//campo[@numero='473']) + sum(//campo[@numero='475'])) * 100)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="498: Verifique valor en SUBTOTAL o una de sus cuentas" condicionFormulaCalculo="1=1" />
+		<formula validacion="round ((sum(//campo[@numero='451']) + sum(//campo[@numero='453']) + sum(//campo[@numero='455']) + sum(//campo[@numero='457']) + sum(//campo[@numero='459']) + sum(//campo[@numero='461']) + sum(//campo[@numero='463']) + sum(//campo[@numero='465']) + sum(//campo[@numero='467']) + sum(//campo[@numero='469']) + sum(//campo[@numero='471']) + sum(//campo[@numero='473']) + sum(//campo[@numero='475'])) * 100)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA"
+			mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="499">
+		<formula validacion="round (//campo[@numero='499'] * 100) = round ( (//campo[@numero='399'] + //campo[@numero='498']) * 100 )"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="499: TOTAL RETENCIONES 399 + 498" condicionFormulaCalculo="1=1" />
+		<formula validacion="round ( (//campo[@numero='399'] + //campo[@numero='498']) * 100 )" fechaVigenciaDesde="20000101"
+			fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="902">
+		<formula validacion="( round (//campo[@numero='902'] * 100) = round((//campo[@numero='499'] - sum(//campo[@numero='901'])) * 100) ) or ( //campo[@numero='902'] = 0 and (//campo[@numero='499'] - sum(//campo[@numero='901'])) &lt; 0 )"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="Operacion incorrecta, campo 902: Total impuesto a pagar." condicionFormulaCalculo="1=1" />
+		<formula validacion="sum(//campo[@numero='902'])&gt;=0" fechaVigenciaDesde="19990101" fechaVigenciaHasta=""
+			tipoFormula="V" severidad="ERROR" mensajeError="Los campos de valor a pagar, interes, multas e impuesto no deben tener valores negativos."
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="(sum(//campo[@numero='902']) &gt; 0 and string-length(//campo[@numero='104']) &gt; 0 and //campo[@numero='31'] = 'S') or (sum(//campo[@numero='902']) &gt;= 0 and string-length(//campo[@numero='104']) = 0 and //campo[@numero='31'] = 'O')"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="Campo 902 debe ser mayor o igual a cerO (0)" condicionFormulaCalculo="1=1" />
+		<formula validacion="0" fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="C"
+			severidad="ADVERTENCIA" mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="(//campo[@numero='499'] - sum(//campo[@numero='901'])) &lt; 0" />
+		<formula validacion="round( (//campo[@numero='499'] - sum(//campo[@numero='901'])) * 100)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA"
+			mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="(//campo[@numero='499'] - sum(//campo[@numero='901'])) &gt;= 0" />
+	</campo>
+	<campo numero="903">
+		<formula validacion="//campo[@numero='903'] &gt;= 0 or string-length(//campo[@numero='903'])=0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="Campo 903 debe ser mayor o igual a cero" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="904">
+		<formula validacion="//campo[@numero='904'] &gt;= 0 or string-length(//campo[@numero='904'])=0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="Campo 904 debe ser mayor o igual a cero" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="905">
+		<formula validacion="round (//campo[@numero='905'] * 100) = round( (//campo[@numero='999'] - sum(//campo[@numero='907'])) * 100)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="Verifique 905 = 999 - 907" condicionFormulaCalculo="1=1" />
+		<formula validacion="//campo[@numero='905'] &gt;= 0" fechaVigenciaDesde="20000101" fechaVigenciaHasta=""
+			tipoFormula="V" severidad="ERROR" mensajeError="Campo 905 debe ser mayor o igual a cero"
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="907">
+		<formula validacion="round (//campo[@numero='907'] * 100) = round ( (sum(//campo[@numero='909']) +sum(//campo[@numero='911']) + sum(//campo[@numero='913']) + sum(//campo[@numero='915'])) * 100 ) or string-length(//campo[@numero='907'])=0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="907: Total Notas de Credito           909+911+913+915" condicionFormulaCalculo="1=1" />
+		<formula validacion="//campo[@numero='907'] &gt;= 0 or string-length(//campo[@numero='907'])=0"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="907: Valor debe ser mayor o igual a 0" condicionFormulaCalculo="1=1" />
+		<formula validacion="sum(//campo[@numero='907'])&gt;=0" fechaVigenciaDesde="19990101" fechaVigenciaHasta=""
+			tipoFormula="V" severidad="ERROR" mensajeError="Los campos de valor a pagar, interes, multas e impuesto no deben tener valores negativos."
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round ( (sum(//campo[@numero='909']) +sum(//campo[@numero='911']) + sum(//campo[@numero='913']) + sum(//campo[@numero='915'])) * 100 )"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA"
+			mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="908">
+		<formula validacion="(string-length(//campo[@numero='908']) &gt; 0) and (sum(//campo[@numero='909']) &gt; 0) or (string-length(//campo[@numero='908']) = 0) and (sum(//campo[@numero='909']) = 0)"
+			fechaVigenciaDesde="19990101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="908:Verifique el numero de Nota de Credito" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="910">
+		<formula validacion="(string-length(//campo[@numero='910']) &gt; 0) and (sum(//campo[@numero='911']) &gt; 0) or (string-length(//campo[@numero='910']) = 0) and (sum(//campo[@numero='911']) = 0)"
+			fechaVigenciaDesde="19990101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="910:Verifique el numero de Nota de Credito" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="912">
+		<formula validacion="(string-length(//campo[@numero='912']) &gt; 0) and (sum(//campo[@numero='913']) &gt; 0) or (string-length(//campo[@numero='912']) = 0) and (sum(//campo[@numero='913']) = 0)"
+			fechaVigenciaDesde="19990101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="912:Verifique el numero de Nota de Credito" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="914">
+		<formula validacion="(string-length(//campo[@numero='914']) &gt; 0) and (sum(//campo[@numero='915']) &gt; 0) or (string-length(//campo[@numero='914']) = 0) and (sum(//campo[@numero='915']) = 0)"
+			fechaVigenciaDesde="19990101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="914:Verifique el numero de Nota de Credito" condicionFormulaCalculo="1=1" />
+	</campo>
+	<campo numero="999">
+		<formula validacion="((sum(//campo[@numero='104'])!=0) and (//campo[@numero='999']!=0)) or string-length(//campo[@numero='104']) = 0"
+			fechaVigenciaDesde="19990101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="No puede presentar una declaración sustitutiva si no tiene un valor a pagar (campo 999)"
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round (//campo[@numero='999'] * 100) = round( (//campo[@numero='902'] + sum(//campo[@numero='903']) + sum(//campo[@numero='904']) ) * 100) "
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="V" severidad="ERROR"
+			mensajeError="999: Error en Total Pagado          902+903+904" condicionFormulaCalculo="1=1" />
+		<formula validacion="sum(//campo[@numero='999'])&gt;=0" fechaVigenciaDesde="19990101" fechaVigenciaHasta=""
+			tipoFormula="V" severidad="ERROR" mensajeError="Los campos de valor a pagar, interes, multas e impuesto no deben tener valores negativos."
+			condicionFormulaCalculo="1=1" />
+		<formula validacion="round( (//campo[@numero='902'] + sum(//campo[@numero='903']) + sum(//campo[@numero='904']) ) * 100)"
+			fechaVigenciaDesde="20000101" fechaVigenciaHasta="" tipoFormula="C" severidad="ADVERTENCIA"
+			mensajeError="{0}: el valor ingresado ({1}) no corresponde con el valor calculado por el sistema ({2}). "
+			condicionFormulaCalculo="1=1" />
+	</campo>
+</formulasValidacionCalculo>

@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Servicio de Rentas Internas.
+
+XML Schema para representar formularios de declaración de impuestos.
+
+3 de diciembre de 2002
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="0.1">
+	<xsd:element name="formulario">
+		<xsd:annotation>
+			<xsd:documentation>Formulario de declaración de impuestos.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="TipoFormulario"/>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="TipoFormulario">
+		<xsd:annotation>
+			<xsd:documentation>Tipo de dato Formulario.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="cabecera" type="CabeceraType">
+				<xsd:annotation>
+					<xsd:documentation>Contiene la cabecera del formulario, con la información consolidada de valores a pagar.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="detalle" type="DetalleType">
+				<xsd:annotation>
+					<xsd:documentation>Contiene el detalle del formulario, representado en líneas numeradas, como un formulario físico.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="version" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Versión del Schema XML del formulario.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="CabeceraType">
+		<xsd:annotation>
+			<xsd:documentation>Tipo de dato Cabecera.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="codigo_version_formulario" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Código de versión de formulario (04200201, 05200201, etc).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ruc" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>RUC del contribuyente.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="codigo_moneda" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Código de moneda.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DetalleType">
+		<xsd:annotation>
+			<xsd:documentation>Tipo de dato Detalle.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="campo" type="CampoType" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Campo del formulario.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CampoType">
+		<xsd:annotation>
+			<xsd:documentation>Tipo de dato Campo.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="numero" type="xsd:int" use="required">
+					<xsd:annotation>
+						<xsd:documentation>Número de línea del campo.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+</xsd:schema>
