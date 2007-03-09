@@ -23,22 +23,10 @@ import sys, os, user
 import logging
 from windows import gDIMM
 
-try:
-    import pygtk
-    pygtk.require("2.0")
-except:
-    pass
-try:
-    import gtk
-    import gtk.glade
-except:
-    sys.exit(1)
-
 def main(argv):
 	logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 	app = gDIMM()
-	app.show()
-	gtk.main()
+	app.start()
 
 if __name__ == '__main__':
-        main(sys.argv)
+	main(sys.argv)
