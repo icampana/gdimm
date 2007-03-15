@@ -18,8 +18,11 @@
 #
 ###
 
+#<Actualizar Url="https://declaraciones.sri.gov.ec/rec-declaraciones-internet/login/indexAction.jspa?m=5"/>
+#<enviarDeclaracion Url="https://declaraciones.sri.gov.ec/rec-declaraciones-internet"/>
 
-import sys, os, user
+
+import sys
 import logging
 from windows import gDIMM
 

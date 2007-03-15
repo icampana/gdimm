@@ -2,8 +2,8 @@
 <!DOCTYPE glade-project SYSTEM "http://glade.gnome.org/glade-project-2.0.dtd">
 
 <glade-project>
-  <name>Ui</name>
-  <program_name>ui</program_name>
+  <name>gDIMM</name>
+  <program_name>gdimm</program_name>
   <gnome_support>FALSE</gnome_support>
   <use_widget_names>TRUE</use_widget_names>
   <output_main_file>FALSE</output_main_file>
