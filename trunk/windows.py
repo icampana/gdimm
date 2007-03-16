@@ -16,7 +16,7 @@
 #      Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
 
-import sys
+import sys, os
 
 try:
     import pygtk
@@ -317,6 +317,10 @@ class wndMain(wndBase):
 		for elemento in lista_formularios:
 			formularios.append(elemento)
 
+		cell_imagen = gtk.CellRendererPixbuf()
+		cell_imagen.set_property("stock-id", "gtk-edit")
+		self.cmbFormularios.pack_start(cell_imagen, False)
+
 		cell_formularios = gtk.CellRendererText()
 		self.cmbFormularios.pack_start(cell_formularios, False)
 		self.cmbFormularios.add_attribute(cell_formularios, 'text', 1)
@@ -353,7 +357,32 @@ class wndMain(wndBase):
 		self.swMain.show()
 
 	def on_btnEditar_clicked(self, *args):
-		DialogBox("Mostrar cuadro de abrir archivo", "info")
+		def myresponse(widget, response):
+			if response == 0:
+				widget.destroy()
+			else:
+				filename = widget.get_filename()
+				if filename:
+					if os.path.isfile(filename):
+						pass
+						# Hay que verificar el archivo antes de intentar abrirlo
+				else:
+					DialogBox("Debe seleccionar un archivo", "error")
+		
+		fcArchivo = gtk.FileChooserDialog(title="Abrir declaración", parent=self.win, action=gtk.FILE_CHOOSER_ACTION_OPEN, buttons=(gtk.STOCK_CANCEL, 0, gtk.STOCK_OK, 1) )
+		
+		# Filtro de archivos
+		filtro = gtk.FileFilter()
+		filtro.set_name("Declaraciones en formato XML")
+		filtro.add_pattern("*.xml")
+		filtro.add_pattern("*.XML")
+		
+		fcArchivo.set_filter(filtro)
+		
+		fcArchivo.connect("response", myresponse)
+		fcArchivo.show()
+		
+		#~ fcArchivo.add_shortcut_folder("~/.gdimm/Declaraciones")
 
 	def on_btnHelp_clicked(self, *args):
 		DialogBox("Abrir archivo de ayuda en HTML", "info")
