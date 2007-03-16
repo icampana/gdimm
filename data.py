@@ -62,7 +62,7 @@ class Contribuyente:
         self._data.set("numero", ruc)
     
     def set_nombre(self, nombre):
-        self._nombre.text = nombre
+        self._nombre.text = str(nombre)
 
     def set_tipo_documento(self, tipo_documento):
         self._tipo_doc_representante.text = tipo_documento
@@ -145,11 +145,11 @@ class ListaContribuyentes:
 
             indent(data)
 
-            file = open(self.filename, "w")
-            file.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
-            file.write(tostring(data))
-            file.close()
-            #~ ElementTree(data).write(self.filename, encoding="utf-8")
+            #~ file = open(self.filename, "w")
+            #~ file.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
+            #~ file.write(tostring(data))
+            #~ file.close()
+            ElementTree(data).write(self.filename, encoding="utf-8")
     
     def load(self):
         if os.path.exists(self.filename):
