@@ -13,5 +13,7 @@ Elementos base para el diseño:
   * *Python* .- Lenguaje de programación para conectar la IGU con el motor de la aplicación
   * *XML y XSLT* .- Para todo el manejo de la información se almacenó la descripción de los datos en formato XML plano.
 
+Módulos adicionales:
+  * python-elementtree .- Módulo de python que permite hacer el parsing y la creación de archivos XML de forma rápida y sencilla.
 
 
