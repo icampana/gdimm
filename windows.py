@@ -59,6 +59,15 @@ class wndBase:
 			self.win = self.wTree.get_widget(self.windowname)
 			self.wTree.signal_autoconnect(self)
 			self.win.connect("destroy", self.destroy)
+			
+			#Lee todos los controles definidos en la ventana y los convierte en variables de python
+			#pertenecientes a la clase actual
+			for control in self.wTree.get_widget_prefix(''):
+				self.__dict__[control.get_name()] = control
+			
+			# A partir de aquí si tengo un control llamado txtNombre puedo llamarlo simplemente escribiendo self.txtNombre
+			# y utilizar los métodos y propiedades de ese objeto.
+			
 		self.post_init()
 
 	def init(self):
@@ -102,17 +111,12 @@ class wndEditContribuyente(wndBase):
 		self.model = modelo
 
 	def post_init(self):
-		self.ruc = self.wTree.get_widget("eRUC")
-		self.razon_social = self.wTree.get_widget("eRazonSocial")
-		self.documento = self.wTree.get_widget("eDocumento")
-		self.tipo_documento = self.wTree.get_widget("cmbTipoDocumento")
-
 		self.modeloTipo = gtk.ListStore(str,str)
 
 		self.modeloTipo.append(['Cédula', "C"])
 		self.modeloTipo.append(['Pasaporte', "P"])
 
-		self.tipo_documento.set_model(self.modeloTipo)
+		self.cmbTipoDocumento.set_model(self.modeloTipo)
 
 	def set_data(self, oContribuyente):
 		def search(user_data):
@@ -121,21 +125,21 @@ class wndEditContribuyente(wndBase):
 					return row.iter
 			return None
 
-		self.ruc.set_text(oContribuyente.get_ruc())
-		self.razon_social.set_text(oContribuyente.get_nombre())
-		self.documento.set_text(oContribuyente.get_documento())
+		self.eRUC.set_text(oContribuyente.get_ruc())
+		self.eRazonSocial.set_text(oContribuyente.get_nombre())
+		self.eDocumento.set_text(oContribuyente.get_documento())
 
 		myIter = search( oContribuyente.get_tipo_documento() )
 		if myIter:
-			self.tipo_documento.set_active_iter(myIter)
+			self.cmbTipoDocumento.set_active_iter(myIter)
 
 	def on_btnSave_clicked(self, widget, *args):
 		contrib = Contribuyente()
-		contrib.set_ruc(self.ruc.get_text())
-		contrib.set_nombre(self.razon_social.get_text())
-		contrib.set_documento(self.documento.get_text())
+		contrib.set_ruc(self.eRUC.get_text())
+		contrib.set_nombre(self.eRazonSocial.get_text())
+		contrib.set_documento(self.eDocumento.get_text())
 
-		iter = self.tipo_documento.get_active_iter()
+		iter = self.cmbTipoDocumento.get_active_iter()
 		if iter:
 			contrib.set_tipo_documento( self.modeloTipo.get_value(iter, 1) )
 
@@ -171,16 +175,15 @@ class wndContribuyente(wndBase):
 		self.lstContribuyentes.load()
 		self.load_list()
 
-		self.tvContribuyentes = self.wTree.get_widget('trContribuyentes')
-		self.tvContribuyentes.set_model(self.lista_contribuyentes)
+		self.trContribuyentes.set_model(self.lista_contribuyentes)
 
 		# create the TreeViewColumn to display the data
 		self.columna_ruc = gtk.TreeViewColumn('RUC')
 		self.columna_nombre = gtk.TreeViewColumn('Nombre')
 
 		# add tvcolumn to treeview
-		self.tvContribuyentes.append_column(self.columna_ruc)
-		self.tvContribuyentes.append_column(self.columna_nombre)
+		self.trContribuyentes.append_column(self.columna_ruc)
+		self.trContribuyentes.append_column(self.columna_nombre)
 
 		# create a CellRendererText to render the data
 		self.cell = gtk.CellRendererText()
@@ -194,12 +197,12 @@ class wndContribuyente(wndBase):
 		self.columna_ruc.add_attribute(self.cell, 'text', 0)
 		self.columna_nombre.add_attribute(self.cell, 'text', 1)
 
-		self.tvContribuyentes.set_search_column(0)
+		self.trContribuyentes.set_search_column(0)
 		self.columna_ruc.set_sort_column_id(0)
 		self.columna_nombre.set_sort_column_id(1)
 
 	def get_selected(self):
-		treeselection = self.tvContribuyentes.get_selection()
+		treeselection = self.trContribuyentes.get_selection()
 		(model, iter) = treeselection.get_selected()
 		if not iter:
 			DialogBox("Debe seleccionar al menos un item", tipo = 'warning', window = self.win)
@@ -280,11 +283,6 @@ class wndMain(wndBase):
 			self.lista_contribuyentes.append([item.get_ruc(), item.get_nombre()])
 
 	def post_init(self):
-		# Main scrolled window
-		self.swMain = self.wTree.get_widget("swMain")
-
-		self.cmbContribuyente = self.wTree.get_widget("cmbContribuyente")
-
 		self.lista_contribuyentes = gtk.ListStore(str, str)
 		self.load_contribuyentes()
 
@@ -300,7 +298,6 @@ class wndMain(wndBase):
 		self.cmbContribuyente.add_attribute(cell_nombre, 'text', 1)
 
 		#Combo para el manejo de formularios
-		self.cmbFormularios = self.wTree.get_widget("cmbFormularios")
 		formularios = gtk.ListStore(str, str)
 		self.cmbFormularios.set_model(formularios)
 
@@ -368,20 +365,20 @@ class wndMain(wndBase):
 						# Hay que verificar el archivo antes de intentar abrirlo
 				else:
 					DialogBox("Debe seleccionar un archivo", "error")
-		
+
 		fcArchivo = gtk.FileChooserDialog(title="Abrir declaración", parent=self.win, action=gtk.FILE_CHOOSER_ACTION_OPEN, buttons=(gtk.STOCK_CANCEL, 0, gtk.STOCK_OK, 1) )
-		
+
 		# Filtro de archivos
 		filtro = gtk.FileFilter()
 		filtro.set_name("Declaraciones en formato XML")
 		filtro.add_pattern("*.xml")
 		filtro.add_pattern("*.XML")
-		
+
 		fcArchivo.set_filter(filtro)
-		
+
 		fcArchivo.connect("response", myresponse)
 		fcArchivo.show()
-		
+
 		#~ fcArchivo.add_shortcut_folder("~/.gdimm/Declaraciones")
 
 	def on_btnHelp_clicked(self, *args):
@@ -399,4 +396,4 @@ class wndMain(wndBase):
 		codigo_formulario = modelo.get_value(iter, 0)
 
 		if codigo_formulario == "104" or "104a":
-			self.wTree.get_widget("vbPeriodo").show()
+			self.vbPeriodo.show()
