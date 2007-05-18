@@ -17,6 +17,7 @@
 #
 
 import sys, os
+import ezGlade
 
 try:
     import pygtk
@@ -32,80 +33,9 @@ except:
 from data import *
 import configuration
 
-def DialogBox(mensaje, tipo = 'error', window = None):
-	def btnClose(self, response, *args):
-		self.destroy()
+ezGlade.set_file(configuration.GLADE_FILE)
 
-	tipo_mensaje = {"error" : gtk.MESSAGE_ERROR,
-							"warning" : gtk.MESSAGE_WARNING,
-							"info" : gtk.MESSAGE_INFO}
-
-	wndAviso = gtk.MessageDialog(parent = window, flags= gtk.DIALOG_MODAL, type = tipo_mensaje[tipo], buttons = gtk.BUTTONS_OK, message_format = mensaje)
-	wndAviso.connect("response", btnClose)
-	wndAviso.show()
-
-class wndBase:
-	"Clase base para manejar todas las ventanas, contiene las características principales"
-	windowname = ''
-
-	def __init__(self):
-		"Constructor base de las ventanas"
-
-		#Obtiene el nombre de la ventana del nombre de la clase que se está utilizando
-		self.windowname = str(self.__class__).split(".")[1]
-
-		if self.windowname:
-			self.wTree = gtk.glade.XML(configuration.GLADE_FILE, self.windowname)
-			self.win = self.wTree.get_widget(self.windowname)
-			self.wTree.signal_autoconnect(self)
-			self.win.connect("destroy", self.destroy)
-			
-			#Lee todos los controles definidos en la ventana y los convierte en variables de python
-			#pertenecientes a la clase actual
-			for control in self.wTree.get_widget_prefix(''):
-				self.__dict__[control.get_name()] = control
-			
-			# A partir de aquí si tengo un control llamado txtNombre puedo llamarlo simplemente escribiendo self.txtNombre
-			# y utilizar los métodos y propiedades de ese objeto.
-			
-		self.post_init()
-
-	def init(self):
-		"Función virtual que debe ser sobreescrita para especificar los valores de arranque del formulario"
-		pass
-
-	def post_init(self):
-		"Función que se ejecuta luego de haber creado el formulario base y conectado las señales"
-		pass
-
-	def show(self):
-		"Llama al método show del widget correspondiente a la ventana"
-
-		if self.win:
-			self.win.show()
-
-	def hide(self):
-		if self.win:
-			self.win.hide()
-
-	def idle_events(self):
-		while gtk.events_pending():
-			gtk.main_iteration()
-
-	def set_modal(self, bool = False):
-		self.win.set_modal(bool)
-
-	def destroy(self, *args):
-		pass
-
-	def set_parent(self, parent):
-		"Establece la clase padre y la ventana padre para el objeto actual"
-		if parent:
-			self.parent = parent
-			self.win.set_transient_for(parent.win)
-
-
-class wndEditContribuyente(wndBase):
+class wndEditContribuyente(ezGlade.BaseWindow):
 
 	def set_model(self, modelo):
 		self.model = modelo
@@ -146,7 +76,7 @@ class wndEditContribuyente(wndBase):
 		try:
 			self.model.add(contrib)
 		except Warning:
-			DialogBox("No puede dejar campos en blanco", tipo = 'error', window = self.win)
+			ezGlade.DialogBox("No puede dejar campos en blanco", tipo = 'error', window = self.win)
 			return None
 
 		self.parent.load_list()
@@ -155,7 +85,7 @@ class wndEditContribuyente(wndBase):
 	def on_btnCancel_clicked(self, widget, *args):
 		self.win.destroy()
 
-class wndContribuyente(wndBase):
+class wndContribuyente(ezGlade.BaseWindow):
 	"Ventana de edición de la lista de contribuyentes"
 
 	lista_contribuyentes = None
@@ -205,7 +135,7 @@ class wndContribuyente(wndBase):
 		treeselection = self.trContribuyentes.get_selection()
 		(model, iter) = treeselection.get_selected()
 		if not iter:
-			DialogBox("Debe seleccionar al menos un item", tipo = 'warning', window = self.win)
+			ezGlade.DialogBox("Debe seleccionar al menos un item", tipo = 'warning', window = self.win)
 			return (None,None)
 		else:
 			return (model, iter)
@@ -250,7 +180,7 @@ class wndContribuyente(wndBase):
 		self.parent.load_contribuyentes()
 		self.win.destroy()
 
-class wndAcerca(wndBase):
+class wndAcerca(ezGlade.BaseWindow):
 
 	def on_wndAcerca_close(self, *args):
 		self.win.destroy()
@@ -268,7 +198,7 @@ class gDIMM:
 		mainWindow.show()
 		gtk.main()
 
-class wndMain(wndBase):
+class wndMain(ezGlade.BaseWindow):
 	lista_contribuyentes = None
 
 	def load_contribuyentes(self):
@@ -364,7 +294,7 @@ class wndMain(wndBase):
 						pass
 						# Hay que verificar el archivo antes de intentar abrirlo
 				else:
-					DialogBox("Debe seleccionar un archivo", "error")
+					ezGlade.DialogBox("Debe seleccionar un archivo", "error")
 
 		fcArchivo = gtk.FileChooserDialog(title="Abrir declaración", parent=self.win, action=gtk.FILE_CHOOSER_ACTION_OPEN, buttons=(gtk.STOCK_CANCEL, 0, gtk.STOCK_OK, 1) )
 
@@ -382,11 +312,11 @@ class wndMain(wndBase):
 		#~ fcArchivo.add_shortcut_folder("~/.gdimm/Declaraciones")
 
 	def on_btnHelp_clicked(self, *args):
-		DialogBox("Abrir archivo de ayuda en HTML", "info")
+		ezGlade.DialogBox("Abrir archivo de ayuda en HTML", "info")
 
 	def on_btnClose_clicked(self, *args):
 		"Botón que cierra la pantalla principal y termina la aplicación"
-		gtk.main_quit
+		gtk.main_quit()
 		sys.exit(0)
 
 	def on_cmbFormularios_changed(self, widget, *args):
