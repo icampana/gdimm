@@ -1,0 +1,1 @@
+Aplicación para declaración de impuestos en medio electrónico, válido principalmente para Ecuador, puede ser adaptado a otros esquemas en base a archivos XML y transformaciones XSLT
